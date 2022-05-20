@@ -47,11 +47,17 @@ class ShoppingListItem extends StatelessWidget {
       required this.onCartChanged})
       : super(key: ObjectKey(product));
 
-  Color _getColor(BuildContext context) {
+  Color _getColor() {
     return inCart
         ? Colors.black54
-        : Theme.of(context).primaryColor;
+        : Colors.red;
   }
+
+  TextStyle? _getTextStyle() {
+    if (!inCart) return null;
+    return const TextStyle(fontStyle: FontStyle.italic, decoration: TextDecoration.lineThrough, color: Colors.green);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +66,10 @@ class ShoppingListItem extends StatelessWidget {
         onCartChanged(product, inCart);
       },
       leading: CircleAvatar(
-        backgroundColor: Colors.red,
+        backgroundColor: _getColor(),
         child: Text(product.name[0]), 
       ),
-      title: Text(product.name)
+      title: Text(product.name, style: _getTextStyle())
     );
   }
 }
