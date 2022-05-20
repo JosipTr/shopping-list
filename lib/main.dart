@@ -14,7 +14,9 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Shopping List"),
         ),
-        body: ShoppingListItem(product: Product(name: "Hammer"), inCart: true, onCartChanged: (product, inCart) {}),
+        body: Center(
+          child: ShoppingListItem(product: Product(name: "Hammer"), inCart: true, onCartChanged: (product, inCart) {}),
+        ),
       ),
     );
   }
@@ -42,14 +44,12 @@ class ShoppingListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.red,
-          child: Text(product.name[0]), 
-        ),
-        title: Text(product.name)
+    return ListTile(
+      leading: CircleAvatar(
+        backgroundColor: Colors.red,
+        child: Text(product.name[0]), 
       ),
+      title: Text(product.name)
     );
   }
 }
