@@ -24,3 +24,6 @@ class Product {
 
   Product({required this.name});
 }
+
+typedef CartChangedCallback = Function(Product product, bool inCart);
+
