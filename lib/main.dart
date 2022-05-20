@@ -49,12 +49,18 @@ class ShoppingListItem extends StatelessWidget {
 
   Color _getColor() {
     return inCart
-        ? Colors.black54
+        ? Colors.green
         : Colors.red;
   }
 
+  Icon _getIcon() {
+    return inCart
+        ? const Icon(Icons.check)
+        : const Icon(Icons.radio_button_unchecked);
+  }
+
   TextStyle? _getTextStyle() {
-    if (!inCart) return null;
+    if (!inCart) return const TextStyle(color: Colors.red, fontWeight: FontWeight.bold);
     return const TextStyle(fontStyle: FontStyle.italic, decoration: TextDecoration.lineThrough, color: Colors.green);
   }
 
@@ -67,7 +73,7 @@ class ShoppingListItem extends StatelessWidget {
       },
       leading: CircleAvatar(
         backgroundColor: _getColor(),
-        child: Text(product.name[0]), 
+        child: _getIcon(), 
       ),
       title: Text(product.name, style: _getTextStyle())
     );
